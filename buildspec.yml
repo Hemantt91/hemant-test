@@ -20,6 +20,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"tutuka-task","imageUri":"%s"}]' $CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"tutuka-task","imageUri":"%s"}]'  $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
  artifacts:
      files: imagedifinations.json 
