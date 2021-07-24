@@ -25,4 +25,4 @@ phases:
       - cat imagedefinations.json
 artifacts:
   files:
-    - imagedefinations.json
+      - imagedefinations.json
