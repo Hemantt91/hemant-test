@@ -21,7 +21,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writgin image difinations file...
-      - printf '[{"name":"tutuka-task", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinations.json
+      - printf '[{"name":"tutuka-container", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinations.json
       - cat imagedefinations.json
 artifacts:
   files:
