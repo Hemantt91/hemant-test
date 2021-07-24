@@ -23,3 +23,6 @@ phases:
       - echo Writgin image difinations file...
       - printf '[{"name":"tutuka-container", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinations.json
       - cat imagedefinations.json
+  artifacts:
+    files:
+      - '**/*'
