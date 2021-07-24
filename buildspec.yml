@@ -24,4 +24,5 @@ phases:
       - printf '[{"name":"tutuka-task", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinations.json
       - cat imagedefinations.json
 artifacts:
-  files: imagedefinitions.json
+  files:
+    - imagedefinations.json
