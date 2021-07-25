@@ -1,15 +1,19 @@
-FROM gradle:5.6.4-jdk AS build
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build --no-daemon 
-RUN gradle test --no-daemon 
+FROM ubuntu:18.04
 
-FROM openjdk:8-jre-slim
+# Install dependencies
+RUN apt-get update && \
+ apt-get -y install apache2
 
-EXPOSE 8080
+# Install apache and write hello world message
+RUN echo 'Hello World!' > /var/www/html/index.html
 
-RUN mkdir /app
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
+ chmod 755 /root/run_apache.sh
 
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/tutuka.jar
+EXPOSE 80
 
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/tutuka.jar"]
+CMD /root/run_apache.sh
