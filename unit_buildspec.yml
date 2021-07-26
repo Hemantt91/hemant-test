@@ -1,0 +1,6 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo Unit test started 
+      - docker build -t $REPOSITORY_URI:latest -f Dockerfile_unit_test
